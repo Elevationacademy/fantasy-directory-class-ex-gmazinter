@@ -1,3 +1,7 @@
+import {BrowserRouter as Router ,Route, Link} from 'react-router-dom';
+import Home from './components/Home'
+import About from './components/About'
+import Fentities from './components/Fentities'
 import React, { Component } from 'react';
 import './App.css';
 
@@ -21,15 +25,23 @@ class App extends Component {
   render() {
     const state = this.state
     return (
-      <div className="App">
-        <div id="home-background"></div>
-        <div id="main-links">
-          {/* Main Links */}
-        </div>
-        {/* Routes go here v */}
+      <Router>
+        <div className="App">
+          <div id="home-background"></div>
+          <div id="main-links">
+            {/* Main Links */}
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
 
-        {/* Routes go here ^ */}
-      </div>
+          </div>
+          {/* Routes go here ^ */}
+          <Route path="/" exact component={Home} />
+          <Route path="/about" exact render={() => <About items={Object.keys(state)} />} />
+          <Route path="/directory/:fentities" exact render={({ match }) => <Fentities match={match} />}/>
+
+          {/* Routes go here ^ */}
+        </div>
+      </Router>
     );
   }
 }
