@@ -2,6 +2,7 @@ import {BrowserRouter as Router ,Route, Link} from 'react-router-dom';
 import Home from './components/Home'
 import About from './components/About'
 import Fentities from './components/Fentities'
+import Fentity from './components/Fentity'
 import React, { Component } from 'react';
 import './App.css';
 
@@ -37,7 +38,8 @@ class App extends Component {
           {/* Routes go here ^ */}
           <Route path="/" exact component={Home} />
           <Route path="/about" exact render={() => <About items={Object.keys(state)} />} />
-          <Route path="/directory/:fentities" exact render={({ match }) => <Fentities match={match} />}/>
+          <Route path="/directory/:fentities" exact render={({ match }) => <Fentities match={match} state={this.state}/>}/>
+          <Route path="/directory/:fentities/:name" exact render={({ match }) => <Fentity match={match} state={this.state}/>}/>
 
           {/* Routes go here ^ */}
         </div>
